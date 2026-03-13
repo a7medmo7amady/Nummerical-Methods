@@ -1,4 +1,6 @@
-# Root-Finding Methods – Numerical Analysis
+# Root-Finding Methods – Numerical methods
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15t28AUj4mUv1-Jgr-UgGfE4v3rfu77xK?usp=sharing)
 
 ## Problem
 
