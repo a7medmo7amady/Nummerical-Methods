@@ -29,7 +29,7 @@ The reference (true) root computed by SciPy's `brentq` is **≈ 1.94460843**.
 ### Bisection
 Repeatedly halves the interval $[a, b]$ and keeps the sub-interval where a sign change occurs. Guaranteed to converge but slow — it took **7 iterations** and its final root (1.94531250) is the least accurate, differing from the true root at the 4th decimal place.
 
-### False Position (Regula Falsi)
+### False Position 
 Similar to bisection but uses a linear interpolation between $f(a)$ and $f(b)$ to pick the next estimate instead of the midpoint. Converged in **3 iterations** with a root of 1.94460842 — much closer to the true value.
 
 ### Newton-Raphson
