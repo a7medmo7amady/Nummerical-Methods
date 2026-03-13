@@ -10,25 +10,25 @@ def df(x):
 
 ES = 1e-3 
 
-def bisection(a, b, es=ES):
+def bisection(xl, xu, es=ES):
     history, xr_old = [], None
     for i in range(1, 1001):
-        xr = (a + b) / 2.0
+        xr = (xl + xu) / 2.0
         ea = abs((xr - xr_old) / xr) * 100 if xr_old else 100.0
         history.append((i, xr, ea))
         if ea < es * 100 and i > 1: break
-        a, b = (xr, b) if f(a)*f(xr) > 0 else (a, xr)
+        xl, xu = (xr, xu) if f(xl)*f(xr) > 0 else (xl, xr)
         xr_old = xr
     return xr, history
 
-def false_position(a, b, es=ES):
+def false_position(xl, xu, es=ES):
     history, xr_old = [], None
     for i in range(1, 1001):
-        xr = b - f(b)*(a - b) / (f(a) - f(b))
+        xr = xu - f(xu)*(xl - xu) / (f(xl) - f(xu))
         ea = abs((xr - xr_old) / xr) * 100 if xr_old else 100.0
         history.append((i, xr, ea))
         if ea < es * 100 and i > 1: break
-        a, b = (xr, b) if f(a)*f(xr) < 0 else (a, xr)
+        xl, xu = (xr, xu) if f(xl)*f(xr) < 0 else (xl, xr)
         xr_old = xr
     return xr, history
 
@@ -52,13 +52,13 @@ def secant(x0, x1, es=ES):
         if ea < es * 100: break
     return x2, history
 
-a0, b0 = 1.8, 2.0
-root_bis, hist_bis = bisection(a0, b0)
-root_fp,  hist_fp  = false_position(a0, b0)
+xl0, xu0 = 1.8, 2.0
+root_bis, hist_bis = bisection(xl0, xu0)
+root_fp,  hist_fp  = false_position(xl0, xu0)
 root_nr,  hist_nr  = newton_raphson(1.9)
 root_sec, hist_sec = secant(1.8, 2.0)
 
-root_scipy = brentq(f, a0, b0, xtol=1e-12)
+root_scipy = brentq(f, xl0, xu0, xtol=1e-12)
 
 print(f"{'Method':<20} {'Root':>12} {'Iters':>6}")
 for name, r, h in [("Bisection",      root_bis, hist_bis),
